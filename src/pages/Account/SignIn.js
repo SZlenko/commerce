@@ -1,0 +1,252 @@
+import React, { useState } from "react";
+import { BsCheckCircleFill } from "react-icons/bs";
+import { Link, useNavigate } from "react-router-dom";
+import { logoLight } from "../../assets/images";
+import { useToast } from "../../hooks/useToast";
+import { useAuth } from "../../contexts/AuthContext";
+
+const SignIn = () => {
+  const { showSuccess, showError } = useToast();
+  const { login, loading } = useAuth();
+  const navigate = useNavigate();
+  
+  // ============= Initial State Start here =============
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  // ============= Initial State End here ===============
+  // ============= Error Msg Start here =================
+  const [errEmail, setErrEmail] = useState("");
+  const [errPassword, setErrPassword] = useState("");
+  // ============= Error Msg End here ===================
+  // ============= Event Handler Start here =============
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+    setErrEmail("");
+  };
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+    setErrPassword("");
+  };
+  // ============= Event Handler End here ===============
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+
+    // Clear previous errors
+    setErrEmail("");
+    setErrPassword("");
+
+    let hasErrors = false;
+
+    if (!email.trim()) {
+      setErrEmail("Please enter your email address");
+      hasErrors = true;
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
+      setErrEmail("Please enter a valid email address");
+      hasErrors = true;
+    }
+
+    if (!password) {
+      setErrPassword("Please enter your password");
+      hasErrors = true;
+    }
+
+    if (!hasErrors) {
+      setIsSubmitting(true);
+      
+      try {
+        const result = await login(email, password);
+        
+        if (result.success) {
+          showSuccess(
+            `Welcome back, ${result.user.name}! You have been signed in successfully.`,
+            { duration: 4000 }
+          );
+          
+          // Clear form
+          setEmail("");
+          setPassword("");
+          
+          // Redirect to home page
+          setTimeout(() => {
+            navigate("/");
+          }, 1500);
+        } else {
+          showError(result.error || "Failed to sign in. Please check your credentials and try again.");
+        }
+      } catch (error) {
+        showError("An unexpected error occurred. Please try again.");
+      } finally {
+        setIsSubmitting(false);
+      }
+    }
+  };
+  return (
+    <div className="w-full h-screen flex items-center justify-center">
+      <div className="w-1/2 hidden lgl:inline-flex h-full text-white">
+        <div className="w-[450px] h-full bg-primeColor px-10 flex flex-col gap-6 justify-center">
+          <Link to="/">
+            <img src={logoLight} alt="logoImg" className="w-28" />
+          </Link>
+          <div className="flex flex-col gap-1 -mt-1">
+            <h1 className="font-titleFont text-xl font-medium">
+              Stay sign in for more
+            </h1>
+            <p className="text-base">When you sign in, you are with us!</p>
+          </div>
+          <div className="w-[300px] flex items-start gap-3">
+            <span className="text-green-500 mt-1">
+              <BsCheckCircleFill />
+            </span>
+            <p className="text-base text-gray-300">
+              <span className="text-white font-semibold font-titleFont">
+                Get started fast with OREBI
+              </span>
+              <br />
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab omnis
+              nisi dolor recusandae consectetur!
+            </p>
+          </div>
+          <div className="w-[300px] flex items-start gap-3">
+            <span className="text-green-500 mt-1">
+              <BsCheckCircleFill />
+            </span>
+            <p className="text-base text-gray-300">
+              <span className="text-white font-semibold font-titleFont">
+                Access all OREBI services
+              </span>
+              <br />
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab omnis
+              nisi dolor recusandae consectetur!
+            </p>
+          </div>
+          <div className="w-[300px] flex items-start gap-3">
+            <span className="text-green-500 mt-1">
+              <BsCheckCircleFill />
+            </span>
+            <p className="text-base text-gray-300">
+              <span className="text-white font-semibold font-titleFont">
+                Trusted by online Shoppers
+              </span>
+              <br />
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab omnis
+              nisi dolor recusandae consectetur!
+            </p>
+          </div>
+          <div className="flex items-center justify-between mt-10">
+            <Link to="/">
+              <p className="text-sm font-titleFont font-semibold text-gray-300 hover:text-white cursor-pointer duration-300">
+                © OREBI
+              </p>
+            </Link>
+            <p className="text-sm font-titleFont font-semibold text-gray-300 hover:text-white cursor-pointer duration-300">
+              Terms
+            </p>
+            <p className="text-sm font-titleFont font-semibold text-gray-300 hover:text-white cursor-pointer duration-300">
+              Privacy
+            </p>
+            <p className="text-sm font-titleFont font-semibold text-gray-300 hover:text-white cursor-pointer duration-300">
+              Security
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="w-full lgl:w-1/2 h-full">
+        <form className="w-full lgl:w-[450px] h-screen flex items-center justify-center">
+            <div className="px-6 py-4 w-full h-[90%] flex flex-col justify-center overflow-y-scroll scrollbar-thin scrollbar-thumb-primeColor">
+              <h1 className="font-titleFont underline underline-offset-4 decoration-[1px] font-semibold text-3xl mdl:text-4xl mb-4">
+                Sign in
+              </h1>
+              <div className="flex flex-col gap-3">
+                {/* Email */}
+                <div className="flex flex-col gap-.5">
+                  <p className="font-titleFont text-base font-semibold text-gray-600">
+                    Work Email
+                  </p>
+                  <input
+                    onChange={handleEmail}
+                    value={email}
+                    className="w-full h-8 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-md border-[1px] border-gray-400 outline-none"
+                    type="email"
+                    placeholder="john@workemail.com"
+                  />
+                  {errEmail && (
+                    <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
+                      <span className="font-bold italic mr-1">!</span>
+                      {errEmail}
+                    </p>
+                  )}
+                </div>
+
+                {/* Password */}
+                <div className="flex flex-col gap-.5">
+                  <p className="font-titleFont text-base font-semibold text-gray-600">
+                    Password
+                  </p>
+                  <input
+                    onChange={handlePassword}
+                    value={password}
+                    className="w-full h-8 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-md border-[1px] border-gray-400 outline-none"
+                    type="password"
+                    placeholder="Create password"
+                  />
+                  {errPassword && (
+                    <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
+                      <span className="font-bold italic mr-1">!</span>
+                      {errPassword}
+                    </p>
+                  )}
+                </div>
+
+                <button
+                  onClick={handleSignIn}
+                  disabled={isSubmitting}
+                  className={`w-full text-base font-medium h-10 rounded-md duration-300 ${
+                    isSubmitting
+                      ? 'bg-gray-400 text-gray-600 cursor-not-allowed'
+                      : 'bg-primeColor hover:bg-black text-gray-200 hover:text-white cursor-pointer'
+                  }`}
+                >
+                  {isSubmitting ? 'Signing In...' : 'Sign In'}
+                </button>
+                
+                {/* Test buttons - remove in production */}
+                <div className="flex gap-2 mt-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      console.log('Error button clicked, showing error toast');
+                      showError('Test error message - Invalid credentials');
+                    }}
+                    className="flex-1 text-sm font-medium h-8 rounded-md duration-300 bg-red-500 hover:bg-red-600 text-white cursor-pointer"
+                  >
+                    Test Error
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      console.log('Success button clicked, showing success toast');
+                      showSuccess('Test success message - Login successful!');
+                    }}
+                    className="flex-1 text-sm font-medium h-8 rounded-md duration-300 bg-green-500 hover:bg-green-600 text-white cursor-pointer"
+                  >
+                    Test Success
+                  </button>
+                </div>
+                <p className="text-sm text-center font-titleFont font-medium">
+                  Don't have an Account?{" "}
+                  <Link to="/signup">
+                    <span className="hover:text-blue-600 duration-300">
+                      Sign up
+                    </span>
+                  </Link>
+                </p>
+              </div>
+            </div>
+          </form>
+      </div>
+    </div>
+  );
+};
+
+export default SignIn;

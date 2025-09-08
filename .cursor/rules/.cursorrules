@@ -1,0 +1,184 @@
+# Cursor Rules for Fashion Shop E-commerce Project
+
+## Project Overview
+This is a React-based e-commerce shopping application for fashion and lifestyle products, built with modern web technologies including React Router, Redux Toolkit, Tailwind CSS, and Framer Motion.
+
+**IMPORTANT: This is a CLIENT-SIDE ONLY application** - it runs entirely in the browser with no backend server, database, or real API integrations. All data persistence is handled through Redux state and browser localStorage.
+
+## Technology Stack
+- **Frontend**: React 18.2.0 with React Router DOM 6.6.0
+- **State Management**: Redux Toolkit with Redux Persist
+- **Styling**: Tailwind CSS 3.2.4 with custom configuration
+- **Animations**: Framer Motion 8.0.2
+- **UI Components**: React Icons, React Slick for carousels
+- **Build Tool**: Create React App with React Scripts
+
+## Code Style and Conventions
+
+### File Naming
+- Use PascalCase for component files (e.g., `ProductDetails.js`, `Header.js`)
+- Use camelCase for utility files and hooks
+- Use kebab-case for CSS files and assets
+- Keep file names descriptive and consistent with their purpose
+
+### Component Structure
+- Place components in appropriate directories under `src/components/`
+- Group related components in subdirectories (e.g., `home/Header/`, `pageProps/shopPage/`)
+- Use functional components with hooks instead of class components
+- Export components as default exports
+
+### Import Organization
+- Group imports in this order:
+  1. React and React-related imports
+  2. Third-party libraries
+  3. Internal components (use relative paths)
+  4. Assets and utilities
+- Use named imports when possible
+- Keep imports clean and remove unused imports
+
+### JSX and Component Guidelines
+- Use semantic HTML elements
+- Apply Tailwind CSS classes for styling
+- Use the custom font families defined in Tailwind config:
+  - `font-bodyFont` for body text (DM Sans)
+  - `font-titleFont` for headings (Poppins)
+- Maintain consistent spacing and layout patterns
+- Use the custom container max-width: `max-w-container` (1440px)
+
+### State Management (Redux)
+- Use Redux Toolkit for state management
+- Follow the existing pattern in `orebiSlice.js`:
+  - Use `createSlice` for reducers
+  - Keep state structure flat and normalized
+  - Use descriptive action names
+  - Handle cart operations (add, increase, decrease, delete, reset)
+- Use `useSelector` and `useDispatch` hooks in components
+- Persist cart state using Redux Persist
+- **Note**: All state is client-side only - no server synchronization
+
+### Routing
+- Use React Router DOM v6 patterns
+- Follow the existing route structure in `App.js`
+- Use nested routes for layout components
+- Implement proper route parameters (e.g., `product/:_id`)
+- Use `ScrollRestoration` for better UX
+
+### Styling Guidelines
+- Use Tailwind CSS utility classes
+- Follow the custom breakpoints defined in `tailwind.config.js`:
+  - xs: 320px, sm: 375px, sml: 500px, md: 667px, mdl: 768px, lg: 960px, lgl: 1024px, xl: 1280px
+- Use custom colors: `primeColor` (#262626) and `lightText` (#6D6D6D)
+- Apply consistent spacing using Tailwind's spacing scale
+- Use the custom shadow: `testShadow` for elevated elements
+
+### Performance Considerations
+- Use React.memo() for components that don't need frequent re-renders
+- Implement proper key props for list items
+- Optimize images using WebP format when possible
+- Use lazy loading for route components if needed
+- Minimize bundle size by importing only necessary dependencies
+
+### Error Handling
+- Implement proper error boundaries for React components
+- Handle API errors gracefully
+- Provide meaningful error messages to users
+- Use try-catch blocks for async operations
+
+### Accessibility
+- Use semantic HTML elements
+- Provide proper alt text for images
+- Ensure keyboard navigation works
+- Maintain proper color contrast ratios
+- Use ARIA labels where appropriate
+
+### Code Quality
+- Write clean, readable, and maintainable code
+- Use meaningful variable and function names
+- Add comments for complex logic
+- Keep functions small and focused
+- Avoid deep nesting and complex conditionals
+
+### Testing
+- Write unit tests for utility functions
+- Test component rendering and user interactions
+- Use React Testing Library for component tests
+- Maintain good test coverage for critical functionality
+
+### Git and Version Control
+- Use descriptive commit messages
+- Create feature branches for new functionality
+- Keep commits atomic and focused
+- Use conventional commit format when possible
+
+### Security Best Practices
+- Sanitize user inputs
+- Use HTTPS for all external requests
+- Implement proper authentication and authorization
+- Protect against XSS and CSRF attacks
+- Validate data on both client and server sides
+
+### Performance Monitoring
+- Monitor bundle size and loading times
+- Use React DevTools for debugging
+- Implement proper loading states
+- Optimize images and assets
+- Use code splitting for large applications
+
+## File Structure Guidelines
+- Keep components modular and reusable
+- Separate concerns (UI, logic, data)
+- Use index.js files for clean imports
+- Organize assets in appropriate directories
+- Maintain consistent folder structure
+
+## Development Workflow
+- Use `npm start` for development server
+- Use `npm run build` for production builds
+- Test changes thoroughly before committing
+- Follow the existing code patterns and conventions
+- Document any new patterns or conventions
+
+## Common Patterns to Follow
+- Use the existing layout structure with Header, HeaderBottom, SpecialCase, Footer, FooterBottom
+- Follow the product card pattern for displaying items
+- Use the existing cart management system
+- Implement consistent form validation
+- Use the established routing patterns
+
+## Anti-Patterns to Avoid
+- Don't mutate state directly in Redux
+- Avoid inline styles when Tailwind classes are available
+- Don't create deeply nested component structures
+- Avoid prop drilling - use Redux for shared state
+- Don't ignore accessibility requirements
+- Avoid hardcoding values that should be configurable
+
+## Documentation
+- **CRITICAL:** Always reference and maintain the `Documentation.md` file in the project root
+- The `Documentation.md` file contains comprehensive information about:
+  - All components, their props, and functionality
+  - Redux actions, reducers, and state schemas
+  - Routing structure and page components
+  - Data schemas and API integration patterns
+  - Styling system and Tailwind configuration
+  - Development guidelines and best practices
+- Update `Documentation.md` whenever you:
+  - Add new components or modify existing ones
+  - Create new Redux actions or modify state structure
+  - Add new pages or routes
+  - Change data schemas or API patterns
+  - Update styling system or configuration
+- Document complex business logic in code comments
+- Keep README.md updated with setup instructions
+- Document any custom hooks or utilities
+- Provide clear component prop documentation
+- Maintain changelog for significant updates
+
+## Documentation Maintenance
+- **Before making changes:** Review relevant sections in `Documentation.md`
+- **After making changes:** Update the corresponding sections in `Documentation.md`
+- **For new features:** Add comprehensive documentation following the existing format
+- **For bug fixes:** Update any affected documentation sections
+- **For refactoring:** Ensure documentation reflects the new structure
+
+Remember: Consistency is key. Follow the existing patterns and conventions established in the codebase to maintain code quality and team productivity. Always keep the `Documentation.md` file current and comprehensive.
