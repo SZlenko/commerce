@@ -1,11 +1,12 @@
 import {
-  createBrowserRouter,
+  createHashRouter,
   RouterProvider,
   Outlet,
   createRoutesFromElements,
   Route,
   ScrollRestoration,
 } from "react-router-dom";
+
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./redux/store";
@@ -45,7 +46,7 @@ const Layout = () => {
     </div>
   );
 };
-const router = createBrowserRouter(
+const router = createHashRouter(
   createRoutesFromElements(
     <Route>
       <Route path="/" element={<Layout />}>
