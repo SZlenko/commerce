@@ -1,7 +1,7 @@
 {
-  "name": "OREBI Shopping",
-  "short_name": "OREBI",
-  "description": "Shop the best deals on fashion, electronics, and more at OREBI Shopping.",
+  "name": "Fashion Shop",
+  "short_name": "Fashion Shop",
+  "description": "Shop the latest fashion trends and styles at Fashion Shop. Discover exclusive clothing, accessories, and more.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
