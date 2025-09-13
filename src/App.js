@@ -7,8 +7,6 @@ import {
   ScrollRestoration,
 } from "react-router-dom";
 
-import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./redux/store";
 import { ToastProvider } from "./contexts/ToastContext";
 import { AuthProvider } from "./contexts/AuthContext";
@@ -88,19 +86,15 @@ const router = createHashRouter(
 
 function App() {
   return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <ErrorBoundary>
-          <AuthProvider>
-            <ToastProvider>
-              <div className="font-bodyFont">
-                <RouterProvider router={router} />
-              </div>
-            </ToastProvider>
-          </AuthProvider>
-        </ErrorBoundary>
-      </PersistGate>
-    </Provider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <ToastProvider>
+          <div className="font-bodyFont">
+            <RouterProvider router={router} />
+          </div>
+        </ToastProvider>
+      </AuthProvider>
+    </ErrorBoundary>
   );
 }
 
