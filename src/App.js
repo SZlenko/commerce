@@ -86,7 +86,7 @@ const router = createHashRouter(
 
 function App() {
   return (
-    <ErrorBoundary>
+  //  <ErrorBoundary>
       <AuthProvider>
         <ToastProvider>
           <div className="font-bodyFont">
@@ -94,7 +94,7 @@ function App() {
           </div>
         </ToastProvider>
       </AuthProvider>
-    </ErrorBoundary>
+   // </ErrorBoundary>
   );
 }
 
