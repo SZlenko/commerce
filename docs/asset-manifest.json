@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/commerce/static/css/main.ebab578f.css",
-    "main.js": "/commerce/static/js/main.0f573844.js",
+    "main.js": "/commerce/static/js/main.c0a5a962.js",
     "static/media/bannerImgTwo.webp": "/commerce/static/media/bannerImgTwo.d93152138c5c9da3de58.webp",
     "static/media/bannerImgThree.webp": "/commerce/static/media/bannerImgThree.cdd63ff84acf53a73a0d.webp",
     "static/media/saleImgTwo.webp": "/commerce/static/media/saleImgTwo.ecb733524e878406c281.webp",
@@ -11,6 +11,7 @@
     "static/media/productOfTheYear.webp": "/commerce/static/media/productOfTheYear.2c30f10b51873bab4630.webp",
     "static/media/saleImgOne.webp": "/commerce/static/media/saleImgOne.5fd9a91421b8b3d52f04.webp",
     "static/media/bestSellerThree.webp": "/commerce/static/media/bestSellerThree.8caffcd1cd1c67b4a340.webp",
+    "static/media/orebiLogo.png": "/commerce/static/media/orebiLogo.20799c7e4deeeec31889.png",
     "static/media/saleImgThree.webp": "/commerce/static/media/saleImgThree.7f55d28e41e547163b6c.webp",
     "static/media/newArrFour.webp": "/commerce/static/media/newArrFour.b8a5fda6839f2f0b1eaa.webp",
     "static/media/bestSellerTwo.webp": "/commerce/static/media/bestSellerTwo.c2641a76c189fcc71670.webp",
@@ -29,10 +30,10 @@
     "static/media/slick.ttf": "/commerce/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/commerce/static/media/slick.295183786cd8a1389865.woff",
     "main.ebab578f.css.map": "/commerce/static/css/main.ebab578f.css.map",
-    "main.0f573844.js.map": "/commerce/static/js/main.0f573844.js.map"
+    "main.c0a5a962.js.map": "/commerce/static/js/main.c0a5a962.js.map"
   },
   "entrypoints": [
     "static/css/main.ebab578f.css",
-    "static/js/main.0f573844.js"
+    "static/js/main.c0a5a962.js"
   ]
 }
